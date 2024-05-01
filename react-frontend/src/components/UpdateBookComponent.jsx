@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import EmployeeService from '../services/EmployeeService';
+import BookService from '../services/BookService';
 
 
-class UpdateEmployeeComponent extends Component {
+class UpdateBookComponent extends Component {
 
     constructor(props){
         super(props)
@@ -10,50 +10,59 @@ class UpdateEmployeeComponent extends Component {
 
         this.state={
             id: this.props.match.params.id,
-            firstName:'',
-            lastName:'',
-            emailId:''
+           title:'',
+                Author:'',
+                ISBN:'',
+                Genre:'',
+                Year:''
         }
 
-        this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
-        this.changeLastNmeHandler = this.changeLastNameHandler.bind(this);
-        this.updateEmployee = this.updateEmployee.bind(this);
+         this.changettitleHandler = this.changettitleHandler.bind(this);
+            this.changetAuthorHandler = this.changetAuthorHandler.bind(this);
+            this.changetISBNHandler = this.changetISBNHandler.bind(this);
+            this.changetGenreHandler = this.changetGenreHandler.bind(this);
+            this.changeYearHandler = this.changeYearHandler.bind(this);
+        this.updatebook = this.updatebook.bind(this);
 }
 
 componentDidMount(){
-    EmployeeService.getEmployeeById(this.state.id).then((res) =>{
-        let employee = res.data;
-        this.setState({firstName: employee.firstName,
-            lastName: employee.lastName,
-            emailId: employee.emailId
+    BookService.getBookById(this.state.id).then((res) =>{
+        let book = res.data;
+        this.setState({{title: this.state.title, Author: this.state.Author, ISBN: this.state.ISBN,Genre: this.state.Genre,Year: this.state.Year}
         });
     });
 }
 
 updateEmployee = (e) => {
     e.preventDefault();
-    let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
-    console.log('employee =>' +JSON.stringify(employee));
+    let employee = {{title: this.state.title, Author: this.state.Author, ISBN: this.state.ISBN,Genre: this.state.Genre,Year: this.state.Year}};
+    console.log('book =>' +JSON.stringify(book));
     
-    EmployeeService.updateEmployee(employee,this.state.id).then(res => {
-        this.props.history.push('/employees');
+    BookService.UpdateBook(book,this.state.id).then(res => {
+        this.props.history.push('/books');
     });
 }
 
-changeFirstNameHandler =(event) => {
-    this.setState({firstName: event.target.value});
+changetitleHandler =(event) => {
+    this.setState({title: event.target.value});
+}
+changeauthorHandler =(event) => {
+    this.setState({author: event.target.value});
+}
+changeISBNHandler =(event) => {
+    this.setState({isbn: event.target.value});
 }
 
-changeLastNameHandler =(event) => {
-    this.setState({lastName: event.target.value});
+changeGenreHandler =(event) => {
+    this.setState({genre: event.target.value});
 }
 
-changeEmailHandler =(event) => {
-    this.setState({emailId: event.target.value});
+changeYearHandler =(event) => {
+    this.setState({year: event.target.value});
 }
 
 cancel(){
-    this.props.history.push('/employees');
+    this.props.history.push('/books');
 }
 
 render() {
@@ -62,7 +71,7 @@ render() {
                 <div className='container'>
                     <div className='row'>
                         <div className='card col-md-6 offset-md-3 offset-md-3'>
-                            <h3 className='text-center'>Update Employee</h3>
+                            <h3 className='text-center'>Update Book</h3>
                             <div className='card-body'>
                                 <form>
                                     <div className='form-group'>
@@ -97,4 +106,4 @@ render() {
 }
 }
 
-export default UpdateEmployeeComponent
+export default UpdateBookComponent
