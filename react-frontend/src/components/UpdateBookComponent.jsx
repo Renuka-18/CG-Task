@@ -74,25 +74,38 @@ render() {
                             <h3 className='text-center'>Update Book</h3>
                             <div className='card-body'>
                                 <form>
-                                    <div className='form-group'>
-                                        <label>First Name:</label>
-                                        <input placeholder='First Name' name='firstName' className='form-control'
-                                            value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
-                                    </div>
+                                      <div className='form-group'>
+                                            <label>Book Title:</label>
+                                            <input placeholder='Title' name='title' className='form-control'
+                                                value={this.state.title} onChange={this.changetitleHandler}/>
+                                        </div>
                                     <br></br>
                                     <div className='form-group'>
-                                        <label>Last Name:</label>
-                                        <input placeholder='Last Name' name='lastName' className='form-control'
-                                            value={this.state.lastName} onChange={this.changeLastNameHandler}/>
-                                    </div>
+                                            <label>Book Author:</label>
+                                            <input placeholder='Author' name='author' className='form-control'
+                                                value={this.state.author} onChange={this.changeauthorHandler}/>
+                                        </div>
                                     <br></br>
-                                    <div className='form-group'>
-                                        <label>Email ID:</label>
-                                        <input placeholder='Email ID' name='emailId' className='form-control'
-                                            value={this.state.emailId} onChange={this.changeEmailHandler}/>
-                                    </div>
+                                 <div className='form-group'>
+                                            <label>Book ISBN:</label>
+                                            <input placeholder='ISBN' name='ISBN' className='form-control'
+                                                value={this.state.isbn} onChange={this.changeisbnHandler}/>
+                                        </div>
+                                    
                                     <br></br>
-                                    <button className='btn btn-success' onClick={this.updateEmployee}>Save</button>
+                                     <div className='form-group'>
+                                            <label>Book Genre:</label>
+                                            <input placeholder='Genre' name='Genre' className='form-control'
+                                                value={this.state.genre} onChange={this.changegenreHandler}/>
+                                        </div>
+                                        <br>
+                                        </br>
+                                         <div className='form-group'>
+                                            <label>Book Year:</label>
+                                            <input placeholder='Year' name='Year' className='form-control'
+                                                value={this.state.Year} onChange={this.changeyearHandler}/>
+                                        </div>
+                                    <button className='btn btn-success' onClick={this.updateBook}>Save</button>
                                     
                                     <button className='btn btn-danger' onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                 </form>
