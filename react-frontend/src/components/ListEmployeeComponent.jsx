@@ -1,45 +1,48 @@
 import React, { Component } from 'react'
-import EmployeeService from '../services/EmployeeService'
+import BookService from '../services/BookService'
 
-class ListEmployeeComponent extends Component {
+class ListBookComponent extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-            employees: []
+            books: []
 
     }
-    this.addEmployee = this.addEmployee.bind(this);
-    this.editEmployee = this.editEmployee.bind(this);
-    this.deleteEmployee = this.deleteEmployee.bind(this);
+    this.addtitle = this.addtitle.bind(this);
+    this.addAuthor = this.addAuthor.bind(this);
+    this.addISBN = this.addISBN.bind(this);
+    this.addGenre = this.addGenre.bind(this);
+    this.addYear = this.addYear.bind(this);
+   
   }
 
-  deleteEmployee(id){
-    EmployeeService.deleteEmployee(id). then(res => {
-        this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
+  deleteBook(id){
+    BookService.deleteBook(id). then(res => {
+        this.setState({books: this.state.books.filter(book => book.id !== id)});
     });
   }
 
-  viewEmployee(id){
-    this.props.history.push(`/view-employee/${id}`);
+  ViewBook(id){
+    this.props.history.push(`/view-book/${id}`);
   }
 
 
-  editEmployee(id){
-    this.props.history.push(`/update-employee/${id}`);
+  editBook(id){
+    this.props.history.push(`/update-book/${id}`);
 
   }
 
     componentDidMount(){
-        EmployeeService.getEmployees().then((res) => {
-            this.setState({ employees: res.data});
+        BookService.getBooks().then((res) => {
+            this.setState({ Books: res.data});
 
         });
     }
 
 
-    addEmployee(){
-        this.props.history.push('/add-employee/-1');
+    addBook(){
+        this.props.history.push('/add-book/-1');
 
     }
 
@@ -58,25 +61,30 @@ class ListEmployeeComponent extends Component {
 
                     <thead>
                         <tr>
-                            <th>Employee First Name</th>
-                            <th>Employee Last Name</th>
-                            <th>Employee Email Id</th>
+                            <th>Book Title</th>
+                           <th>Book Author</th>
+                          <th>Book ISBN</th>
+                          <th>Book Genre</th>
+                          <th>Book Year</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {
-                            this.state.employees.map(
-                                employee =>
-                                <tr key= { employee.id }>
-                                    <td> { employee.firstName } </td>
-                                    <td> { employee.lastName } </td>
-                                    <td> { employee.emailId } </td>
+                            this.state.books.map(
+                                book =>
+                                <tr key= { book.id }>
+                                    <td> { book.Title } </td>
+                                    <td> { book.Author } </td>
+                                    <td> { book.ISBN } </td>
+                                   <td> { book.Genre } </td>
+                                   <td> { book.Year } </td>
+                                  
                                     <td>
-                                        <button onClick ={ () => this.editEmployee(employee.id)} className='btn btn-info'>Update</button>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEmployee(employee.id)} className="btn btn-danger">Delete </button>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(employee.id)} className="btn btn-success">View </button>
+                                        <button onClick ={ () => this.editBOOK(Book.id)} className='btn btn-info'>Update</button>
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.deleteBook(book.id)} className="btn btn-danger">Delete </button>
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.viewbook(book.id)} className="btn btn-success">View </button>
 
                                     </td>
                                 </tr>
